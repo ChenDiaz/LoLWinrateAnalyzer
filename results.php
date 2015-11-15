@@ -40,15 +40,22 @@
           $userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" 
               . $user . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
           $userJson = file_get_contents($userUrl);
-          $user_summoner_ID = json_decode($userJson, true);
+          $user_summoner_info = json_decode($userJson, true);
 
           $duoPartner  = htmlspecialchars($_POST['duoPartner']);
           $duoPartnerUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" 
               . $duoPartner . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
           $duoPartnerJson = file_get_contents($duoPartnerUrl);
-          $duoPartner_summoner_ID = json_decode($duoPartnerJson, true);
+          $duoPartner_summoner_info = json_decode($duoPartnerJson, true);
 
-          echo $user_summoner_ID[$user]['id'] . "<br>" . $duoPartner_summoner_ID[$duoPartner]['id'];
+          echo $user_summoner_info[$user]['id'] . "<br>" . $duoPartner_summoner_info[$duoPartner]['id'] . "<br>";
+
+          // Temporary code, just gives you back the match id of your last ranked game
+          $userMatchIDUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/"
+              . $user_summoner_info[$user]['id'] . "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
+          $userMatchIDString = file_get_contents($userMatchIDUrl);
+          $userMatchListJSON = json_decode($userMatchIDString, true);
+          echo "Your very last ranked match: " . $userMatchListJSON["matches"][0]["timestamp"];
         ?>
       </h1>
     </div>
