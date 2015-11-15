@@ -42,7 +42,7 @@
             <label>Username:</label>
             <input type="text" class="form-control" name="user">
             <label>Duo's Username:</label>
-            <input type="text" class="form-control" name="dUser">
+            <input type="text" class="form-control" name="duoPartner">
             <br>
             <button class="btn">Submit</button>
           </div>

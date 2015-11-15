@@ -37,16 +37,18 @@
       <h1>
         <?php
           $user = htmlspecialchars($_POST['user']);
-          $userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" . $user . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
+          $userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" 
+              . $user . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
           $userJson = file_get_contents($userUrl);
-          $user_data = json_decode($userJson, true);
+          $user_summoner_ID = json_decode($userJson, true);
 
-          $dUser  = htmlspecialchars($_POST['dUser']);
-          $dUserUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" . $dUser . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
-          $dUserJson = file_get_contents($dUserUrl);
-          $dUser_data = json_decode($dUserJson, true);
+          $duoPartner  = htmlspecialchars($_POST['duoPartner']);
+          $duoPartnerUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" 
+              . $duoPartner . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
+          $duoPartnerJson = file_get_contents($duoPartnerUrl);
+          $duoPartner_summoner_ID = json_decode($duoPartnerJson, true);
 
-          echo $user_data[$user]['id'] . "<br>" . $dUser_data[$dUser]['id'];
+          echo $user_summoner_ID[$user]['id'] . "<br>" . $duoPartner_summoner_ID[$duoPartner]['id'];
         ?>
       </h1>
     </div>
