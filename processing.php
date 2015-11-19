@@ -28,6 +28,7 @@
           $userMatch = json_decode($userMatchJSON, true);
 
           //Need help with this on thursday morning if you're here.
+          //(Scott) looks fine to me?
           for($i = 0; $i < 10; $i++)
           {
                if($userMatch["participantIdentities"][$i]["player"]["summonerId"] == $user_id)
@@ -39,7 +40,13 @@
 
           echo "<h1> Your ingame participant id was: " . $user_participant_id . "</h1>";
 
-          // now we figure out if our $user has won the game or not
+          //Figure out what champion the user was playing!
+          $championId = $userMatch["participants"][$user_participant_id - 1]["championId"];
+          $championName = getChampionName($championId);
+          echo "<h1> You were playing " . $championName . "!</h1>";
+
+          //Now we figure out if our $user has won the game or not
+          // $user_participant_id is 1-10, hence subtracting one is necessary to get the right index
           $userWonMatch = $userMatch["participants"][$user_participant_id - 1]["stats"]["winner"];
           $victoryString = ($userWonMatch) ? "won": "lost";
           echo "<h1> You " . $victoryString . " the match! </h1>";
