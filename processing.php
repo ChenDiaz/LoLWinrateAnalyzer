@@ -9,12 +9,12 @@
      if($user != ""){
           //Gets and prints user_id using jsonHelper
           $user_id = getSummonerId($user);
-          echo $user_id . "<br>";
+          echo "Your user ID is: " . $user_id . "<br>";
 
           //Same thing for duo partner
           if($duoPartner != ""){
                $duoPartner_id = getSummonerId($duoPartner);
-               echo $duoPartner_id . "<br>";
+               echo "Your duo's ID is: " . $duoPartner_id . "<br><br>";
           }
 
           //Gets user's match list using jsonHelper
@@ -32,11 +32,17 @@
           {
                if($userMatch["participantIdentities"][$i]["player"]["summonerId"] == $user_id)
                {
+                    // the user is one of summoners 1-10
                     $user_participant_id = $userMatch["participantIdentities"][$i]["participantId"];
                }
           }
 
           echo "<h1> Your ingame participant id was: " . $user_participant_id . "</h1>";
+
+          // now we figure out if our $user has won the game or not
+          $userWonMatch = $userMatch["participants"][$user_participant_id - 1]["stats"]["winner"];
+          $victoryString = ($userWonMatch) ? "won": "lost";
+          echo "<h1> You " . $victoryString . " the match! </h1>";
      }
 
      else{
