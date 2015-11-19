@@ -1,22 +1,45 @@
 <?php
      include 'jsonHelper.php';
      
+     //Gets data from index.php
      $user = htmlspecialchars($_POST['user']);
      $duoPartner  = htmlspecialchars($_POST['duoPartner']);
 
-     //Checks if you've entered a single username or two and gives the appropriate response
+     //Nested ifs check if you've entered a single username or two and gives the appropriate response
      if($user != ""){
-          $user_summoner_info = getSummonerInfo($user);
-          echo $user_summoner_info[$user]['id'] . "<br>";
-          $userMatchIDUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" . $user_summoner_info[$user]['id'] . "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
-          $userMatchIDString = file_get_contents($userMatchIDUrl);
-          $userMatchListJSON = json_decode($userMatchIDString, true);
+          //Gets and prints user_id using jsonHelper
+          $user_id = getSummonerId($user);
+          echo $user_id . "<br>";
 
+          //Same thing for duo partner
           if($duoPartner != ""){
-               $duoPartner_summoner_info = getSummonerInfo($duoPartner);
-               echo $duoPartner_summoner_info[$duoPartner]['id'] . "<br>";
+               $duoPartner_id = getSummonerId($duoPartner);
+               echo $duoPartner_id . "<br>";
           }
-          
-          echo "Your very last ranked match: " . $userMatchListJSON["matches"][0]["timestamp"];
+
+          //Gets user's match list using jsonHelper
+          $userMatchList = getMatchList($user_id);
+
+          //Using breaks like this can't be good practice haha
+          echo "Your very last ranked match timestamp: " . $userMatchList["matches"][0]["timestamp"] . "<br><br>";
+
+          $userMatchURL = "https://na.api.pvp.net/api/lol/na/v2.2/match/" . $userMatchList["matches"][0]["matchId"] . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
+          $userMatchJSON = file_get_contents($userMatchURL);
+          $userMatch = json_decode($userMatchJSON, true);
+
+          //Need help with this on thursday morning if you're here.
+          for($i = 0; $i < 10; $i++)
+          {
+               if($userMatch["participantIdentities"][$i]["player"]["summonerId"] == $user_id)
+               {
+                    $user_participant_id = $userMatch["participantIdentities"][$i]["participantId"];
+               }
+          }
+
+          echo "<h1> Your ingame participant id was: " . $user_participant_id . "</h1>";
+     }
+
+     else{
+          echo "<p>Try again but this time enter some usernames ;)</p>";
      }
 ?>
