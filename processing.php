@@ -14,48 +14,50 @@
      //Nested ifs check if you've entered a single username or two and gives the appropriate response
      if($user != ""){
           //Gets and prints user_id using jsonHelper
-          $user_id = getSummonerId($user);
-          echo "Your user ID is: " . $user_id . "<br>";
+          $userId = getSummonerId($user);
+          echo "Your user ID is: " . $userId . "<br>";
 
           //Same thing for duo partner
           if($duoPartner != ""){
-               $duoPartner_id = getSummonerId($duoPartner);
-               echo "Your duo's ID is: " . $duoPartner_id . "<br><br>";
+               $duoPartnerId = getSummonerId($duoPartner);
+               echo "Your duo's ID is: " . $duoPartnerId . "<br><br>";
           }
 
           //Gets user's match list using jsonHelper
-          $userMatchList = getMatchList($user_id);
+          $userMatchList = getMatchList($userId);
 
-          //Using breaks like this can't be good practice haha
-          echo "Your very last ranked match timestamp: " . $userMatchList["matches"][0]["timestamp"] . "<br><br>";
 
-          $userMatchURL = "https://na.api.pvp.net/api/lol/na/v2.2/match/" . $userMatchList["matches"][0]["matchId"] . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
-          $userMatchJSON = file_get_contents($userMatchURL);
-          $userMatch = json_decode($userMatchJSON, true);
-
-          //Need help with this on thursday morning if you're here.
-          //(Scott) looks fine to me
+          $matchWins = 0;
           for($i = 0; $i < 10; $i++)
           {
-               if($userMatch["participantIdentities"][$i]["player"]["summonerId"] == $user_id)
+               $userMatchURL = "https://na.api.pvp.net/api/lol/na/v2.2/match/" . $userMatchList["matches"][$i]["matchId"] . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
+               $userMatchJSON = file_get_contents($userMatchURL);
+               $userMatch = json_decode($userMatchJSON, true);
+
+               //Need help with this on thursday morning if you're here.
+               //(Scott) looks fine to me?
+               for($j = 0; $j < 10; $j++)
                {
-                    // the user is one of summoners 1-10
-                    $user_participant_id = $userMatch["participantIdentities"][$i]["participantId"];
+                    if($userMatch["participantIdentities"][$j]["player"]["summonerId"] == $userId)
+                    {
+                         // the user is one of summoners 1-10
+                         $userParticipantId = $userMatch["participantIdentities"][$j]["participantId"];
+                    }
                }
+
+               echo "<h1> Your ingame participant id was: " . $userParticipantId . "</h1>";
+
+               //Figure out what champion the user was playing!
+               $championId = $userMatch["participants"][$userParticipantId - 1]["championId"];
+               $championName = getChampionName($championId);
+               echo "<h1> You were playing " . $championName . "!</h1>";
+
+               $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
+               if($matchWon)
+                    $matchWins++;
           }
-
-          echo "<h1> Your ingame participant id was: " . $user_participant_id . "</h1>";
-
-          //Figure out what champion the user was playing
-          $championId = $userMatch["participants"][$user_participant_id - 1]["championId"];
-          $championName = getChampionName($championId);
-          echo "<h1> You were playing " . $championName . "!</h1>";
-
-          //Now we figure out if our $user has won the game or not
-          // Side note: Since $user_participant_id is 1-10, subtracting one is necessary to get the right index
-          $userWonMatch = $userMatch["participants"][$user_participant_id - 1]["stats"]["winner"];
-          $victoryString = ($userWonMatch) ? "won": "lost";
-          echo "<h1> You " . $victoryString . " the match! </h1>";
+          $matchCount = $i;
+          echo "<h1>Your winrate is " . ($matchWins/$matchCount)*100 . "%</h1><br>";
      }
 
      else{
