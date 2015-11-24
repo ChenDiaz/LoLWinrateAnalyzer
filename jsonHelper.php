@@ -44,11 +44,15 @@
             //Figure out what champion the user was playing!
             $championId = $userMatch["participants"][$userParticipantId - 1]["championId"];
             $championName = getChampionName($championId);
-            echo "<h3>Game " . ($i + 1) . ": --- Champion played: " . $championName . "</h3>";
 
             $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
-            if ($matchWon)
+            if ($matchWon) {
+            	echo "<h3 class=\"won-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h3>";
                 $matchWins++;
+            }
+            else {
+            	echo "<h3 class=\"lost-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h3>";
+            }
         }
         return $matchWins;
 	}

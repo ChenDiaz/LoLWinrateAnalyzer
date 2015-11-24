@@ -5,3 +5,11 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.won-message {
+	color: #4F8A10;
+}
+
+.lost-message {
+	color: #D8000C;
+}
