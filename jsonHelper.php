@@ -10,7 +10,7 @@
 	}
 
 	function getMatchList($userId) {
-		$userMatchIdUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" . $userId . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
+		$userMatchIdUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" . $userId . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=12&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
         $userMatchIdJSON = file_get_contents($userMatchIdUrl);
         $userMatchList = json_decode($userMatchIdJSON, true);
 

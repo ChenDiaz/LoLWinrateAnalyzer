@@ -15,23 +15,27 @@
      if ($user != "") {
           //Gets and prints user_id using jsonHelper
           $userId = getSummonerId($user);
-          echo "Your user ID is: " . $userId . "<br>";
+          echo $user . "'s user ID is: " . $userId . "<br>";
 
           //Same thing for duo partner
           if ($duoPartner != "") {
                $duoPartnerId = getSummonerId($duoPartner);
-               echo "Your duo's ID is: " . $duoPartnerId . "<br><br>";
+               echo $duoPartner . "'s ID is: " . $duoPartnerId . "<br><br>";
           }
 
-          echo "***Your ranked stats***"; // Temporary placeholder, will get rid of this line soon
+          // Temporary placeholder, will get rid of this line soon
+          echo "*** Ranked Stats (" . $user . ")***";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
 
           $matchCount = 10;
           $matchWins = matchesWon($matchCount, $userMatchList, $userId);
+          $winrate = ($matchWins / $matchCount) * 100;
+          // only print out one decimal point
+          $winrate = number_format($winrate, 1);
           
-          echo "<h1>Your winrate is " . ($matchWins / $matchCount) * 100 . "%</h1><br>";
+          echo "<h1>Your winrate is " . $winrate . "%</h1><br>";
      }
 
      else {
