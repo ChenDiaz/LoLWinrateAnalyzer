@@ -23,10 +23,12 @@
                echo "Your duo's ID is: " . $duoPartnerId . "<br><br>";
           }
 
+          echo "***Your ranked stats***"; // Temporary placeholder, will get rid of this line soon
+
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
 
-          $matchCount = 7;
+          $matchCount = 10;
           $matchWins = matchesWon($matchCount, $userMatchList, $userId);
           
           echo "<h1>Your winrate is " . ($matchWins / $matchCount) * 100 . "%</h1><br>";
