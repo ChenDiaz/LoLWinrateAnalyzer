@@ -26,32 +26,10 @@
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
 
-
-          $matchWins = 0;
-          for ($i = 0; $i < 10; $i++) {
-               $userMatchURL = "https://na.api.pvp.net/api/lol/na/v2.2/match/" . $userMatchList["matches"][$i]["matchId"] . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
-               $userMatchJSON = file_get_contents($userMatchURL);
-               $userMatch = json_decode($userMatchJSON, true);
-
-               for ($j = 0; $j < 10; $j++) {
-                    if ($userMatch["participantIdentities"][$j]["player"]["summonerId"] == $userId)
-                    {
-                         // the user is one of summoners 1-10
-                         $userParticipantId = $userMatch["participantIdentities"][$j]["participantId"];
-                    }
-               }
-
-               //Figure out what champion the user was playing!
-               $championId = $userMatch["participants"][$userParticipantId - 1]["championId"];
-               $championName = getChampionName($championId);
-               echo "<h3>Game " . ($i + 1) . ": --- Champion played: " . $championName . "</h3>";
-
-               $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
-               if ($matchWon)
-                    $matchWins++;
-          }
-          $matchCount = $i;
-          echo "<h1>Your winrate is " . ($matchWins/$matchCount)*100 . "%</h1><br>";
+          $matchCount = 7;
+          $matchWins = matchesWon($matchCount, $userMatchList, $userId);
+          
+          echo "<h1>Your winrate is " . ($matchWins / $matchCount) * 100 . "%</h1><br>";
      }
 
      else {
