@@ -15,16 +15,16 @@
      if ($user != "") {
           //Gets and prints user_id using jsonHelper
           $userId = getSummonerId($user);
-          echo $user . "'s user ID is: " . $userId . "<br>";
+          echo $user . " ID: " . $userId . "<br>";
 
           //Same thing for duo partner
           if ($duoPartner != "") {
                $duoPartnerId = getSummonerId($duoPartner);
-               echo $duoPartner . "'s ID is: " . $duoPartnerId . "<br><br>";
+               echo $duoPartner . " ID: " . $duoPartnerId . "<br><br>";
           }
 
           // Temporary placeholder, will get rid of this line soon
-          echo "*** Ranked Stats (" . $user . ")***";
+          echo "<h2><i>*** Ranked Stats (" . $user . ")***</i></h2>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);

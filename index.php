@@ -35,8 +35,9 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Winrate Analyzer</h1>
-        <p class="lead"> Enter your names below </p>
+        <h1>Solo Or Duo</h1>
+        <p class="lead"> Enter your summoner names to calculate </p>
+        <p class="lead"> your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">
           <div class="form-group">
             <label>Username:</label>
