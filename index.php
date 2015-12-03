@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body id="kanye-west">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -35,9 +35,9 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>Solo Or Duo</h1>
-        <p class="lead"> Enter your summoner names to calculate </p>
-        <p class="lead"> your solo and duo win rates! </p>
+        <div id="card">
+        <h1 id="title-font">Solo Or Duo</h1>
+        <p class="lead"> Enter your summoner names to calculate your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">
           <div class="form-group">
             <label>Username:</label>
@@ -48,6 +48,7 @@
             <button class="btn">Submit</button>
           </div>
         </form>
+      </div>
       </div>
     </div>
 

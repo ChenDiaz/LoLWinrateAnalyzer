@@ -13,3 +13,23 @@ body {
 .lost-message {
 	color: #D8000C;
 }
+
+#card {
+	background: rgba(220, 220, 220, 0.82);
+	border-radius: 20px;
+	width: 40%;
+	min-width: 200px;
+	height: 60%;
+	min-height: 460px;
+	margin: 10% auto;
+	padding: 5% 5%;
+}
+
+#kanye-west {
+	background: url("img/League.jpg");
+	background-size: cover;
+}
+
+#title-font {
+	font-family: 'Arial Black';
+}
