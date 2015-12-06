@@ -33,3 +33,7 @@ body {
 #title-font {
 	font-family: 'Arial Black';
 }
+
+.button-rounded {
+	border-radius: 10px;
+}
