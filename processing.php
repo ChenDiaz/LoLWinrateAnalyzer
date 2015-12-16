@@ -23,9 +23,9 @@
                echo "<h2 class='summoner-id'>" . $duoPartner . " ID: " . $duoPartnerId . "</h2><br><br>";
           }
 
-          // Temporary placeholder, will get rid of this line soon
-          echo "<div class=\"results-card\"><h1 id='align-center'>(" . $user . ")</h1>";
-          echo "<h2>* Recent Ranked Matches *</h2>";
+          // card title
+          echo "<div class='results-card'><h1 id='align-center'><b>(" . $user . ")</b></h1>";
+          echo "<h3 id='ranked-match-background'>Recent Ranked Matches</h3>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
