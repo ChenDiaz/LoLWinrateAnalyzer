@@ -15,16 +15,16 @@
      if ($user != "") {
           //Gets and prints user_id using jsonHelper
           $userId = getSummonerId($user);
-          echo $user . " ID: " . $userId . "<br>";
+          echo "<h2 class='summoner-id' id='summoner-id-top-margin'>" . $user . " ID: " . $userId . "</h2><br>";
 
           //Same thing for duo partner
           if ($duoPartner != "") {
                $duoPartnerId = getSummonerId($duoPartner);
-               echo $duoPartner . " ID: " . $duoPartnerId . "<br><br>";
+               echo "<h2 class='summoner-id'>" . $duoPartner . " ID: " . $duoPartnerId . "</h2><br><br>";
           }
 
           // Temporary placeholder, will get rid of this line soon
-          echo "<h2><i>*** Ranked Stats (" . $user . ")***</i></h2>";
+          echo "<div class=\"results-card\"><h2><i>*** Ranked Stats (" . $user . ")***</i></h2>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
@@ -35,7 +35,7 @@
           // only print out one decimal point
           $winrate = number_format($winrate, 1);
           
-          echo "<h1>Your winrate is " . $winrate . "%</h1><br>";
+          echo "<h1>Your solo winrate: <span id='yellow'>" . $winrate . "%</span></h1></div><br>";
      }
 
      else {

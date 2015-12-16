@@ -51,11 +51,11 @@
 
             $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
             if ($matchWon) {
-            	echo "<h3 class=\"won-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h3>";
+            	echo "<h4 class=\"won-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
                 $matchWins++;
             }
             else {
-            	echo "<h3 class=\"lost-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h3>";
+            	echo "<h4 class=\"lost-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
             }
         }
         return $matchWins;

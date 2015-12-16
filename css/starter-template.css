@@ -14,7 +14,7 @@ body {
 	color: #D8000C;
 }
 
-#card {
+.card {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
 	width: 40%;
@@ -25,7 +25,15 @@ body {
 	padding: 5% 5%;
 }
 
-#kanye-west {
+.results-card {
+	background: rgba(220, 220, 220, 0.82);
+	border-radius: 20px;
+	float: left;
+	margin: 2% 2%;
+	padding: 5% 5%;
+}
+
+#lol-background-image {
 	background: url("img/League.jpg");
 	background-size: cover;
 }
@@ -37,3 +45,21 @@ body {
 .button-rounded {
 	border-radius: 10px;
 }
+
+.summoner-id {
+    color: #DDD;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin: 3px;
+    padding: none;
+}
+
+#summoner-id-top-margin {
+	margin-top: 3%;
+}
+
+#yellow {
+	color: #FFD700;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+

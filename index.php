@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body id="kanye-west">
+  <body id="lol-background-image">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -35,7 +35,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <div id="card">
+        <div class="card">
         <h1 id="title-font">Solo Or Duo</h1>
         <p class="lead"> Enter your summoner names to calculate your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">

@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body id="lol-background-image">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -34,9 +34,7 @@
     </nav>
 
     <div class="container">
-      <h1>
         <?php include 'processing.php'; ?>
-      </h1>
     </div>
 
     <!-- Bootstrap core JavaScript
