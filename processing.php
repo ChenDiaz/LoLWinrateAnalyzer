@@ -24,7 +24,8 @@
           }
 
           // Temporary placeholder, will get rid of this line soon
-          echo "<div class=\"results-card\"><h2><i>*** Ranked Stats (" . $user . ")***</i></h2>";
+          echo "<div class=\"results-card\"><h1 id='align-center'>(" . $user . ")</h1>";
+          echo "<h2>* Recent Ranked Matches *</h2>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
