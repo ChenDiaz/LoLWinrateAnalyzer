@@ -29,19 +29,38 @@
 		return $championName;
 	}
 
-	function matchesWon($numberOfMatches, $userMatchList, $userId) {
-		$matchWins = 0;
+/*
+    NEED to split matchesWon into THREE FUNCTIONS
+
+    DONEZO (one): return "champion played"/"match-won" as an array of associative arrays
+    DONZO BABY (two): print out solo matches won (for card 1)
+    DONEZO BABY (three): print out duo matches won (for card 2)
+*/
+
+
+	function individualMatchData($numberOfMatches, $userMatchList, $userId, $duoId) {
+        $overallMatchDataArray = array();
+        $numberOfSoloGames = 10;
         for ($i = 0; $i < $numberOfMatches; $i++) {
+            // variables to be added to the associative array for each match
+            $individualMatchArray = array();
+            $playedSolo = true;
+
             $userMatchURL = "https://na.api.pvp.net/api/lol/na/v2.2/match/" . $userMatchList["matches"][$i]["matchId"] 
             		. "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
             $userMatchJSON = file_get_contents($userMatchURL);
             $userMatch = json_decode($userMatchJSON, true);
 
             for ($j = 0; $j < 10; $j++) {
-                if ($userMatch["participantIdentities"][$j]["player"]["summonerId"] == $userId)
+                $summonerId = $userMatch["participantIdentities"][$j]["player"]["summonerId"];
+                if ($summonerId == $userId)
                 {
-                     // the user is one of summoners 1-10
+                     // the user is one of summoners 1-10 –– the "participantId"
                      $userParticipantId = $userMatch["participantIdentities"][$j]["participantId"];
+                }
+                if ($summonerId == $duoId) {
+                    $playedSolo = false;
+                    $numberOfSoloGames--;
                 }
             }
 
@@ -50,14 +69,56 @@
             $championName = getChampionName($championId);
 
             $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
-            if ($matchWon) {
-            	echo "<h4 class=\"won-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
-                $matchWins++;
-            }
-            else {
-            	echo "<h4 class=\"lost-message\">Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
+
+            // Need 3 things in the associative array: champ played, match won, soloOrDuo
+            $individualMatchArray["champPlayed"] = $championName;
+            $individualMatchArray["matchWon"] = $matchWon;
+            $individualMatchArray["playedSolo"] = $playedSolo;
+            $individualMatchArray["numberOfSoloGames"] = $numberOfSoloGames;
+
+            array_push($overallMatchDataArray, $individualMatchArray);
+        }
+        return $overallMatchDataArray;
+	}
+
+    function printSoloGamesWon($arrayOfMatchData, $numberOfMatches) {
+        $gamesWon = 0;
+        for ($i = 0; $i < $numberOfMatches; $i++) {
+            if ($arrayOfMatchData[$i]["playedSolo"] == true) {
+                $championName = $arrayOfMatchData[$i]["champPlayed"];
+                if ($arrayOfMatchData[$i]["matchWon"] == true) {
+                    $gamesWon++;
+                    echo "<h4 class='won-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
+                }
+                else {
+                    echo "<h4 class='lost-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
+                }
             }
         }
-        return $matchWins;
-	}
+        return $gamesWon;
+    }
+
+    function printDuoGamesWon($arrayOfMatchData, $numberOfMatches) {
+        $gamesWon = 0;
+        for ($i = 0; $i < $numberOfMatches; $i++) {
+            if ($arrayOfMatchData[$i]["playedSolo"] == false) {
+                $championName = $arrayOfMatchData[$i]["champPlayed"];
+                if ($arrayOfMatchData[$i]["matchWon"] == true) {
+                    $gamesWon++;
+                    echo "<h4 class='won-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
+                }
+                else {
+                    echo "<h4 class='lost-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
+                }
+            }
+        }
+        return $gamesWon;
+    }
+
+    function calculateWinRate($matchWins, $matchCount) {
+      $winrate = ($matchWins / $matchCount) * 100;
+      // only print out one decimal point
+      $winrate = number_format($winrate, 1);
+      return $winrate;
+    }
 ?>
