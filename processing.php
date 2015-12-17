@@ -40,7 +40,7 @@
 
           echo "<h1>Solo winrate: <span id='yellow'>" . $soloWinRate . "%</span></h1></div>";
 
-          echo "<div class='results-card card-margin'><h1 id='align-center'><b>Duo with (" . $duoPartner . ")</b>";
+          echo "<div class='results-card card-margin'><h1 id='align-center'><span id='light-title'>Duo with</span><b> (" . $duoPartner . ")</b>";
           echo "<h3 id='ranked-match-background'>Recent Duo Matches</h3>";
           $duoGamesWon = printDuoGamesWon($arrayOfMatchData, $matchCount);
           $numberOfDuoGames = $matchCount - $numberOfSoloGames;

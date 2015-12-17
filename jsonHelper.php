@@ -116,13 +116,13 @@
     }
 
     function calculateWinRate($matchWins, $matchCount) {
-        if ($matchCount == 0)
+        if ($matchCount == 0) {
+            echo "<p id='no-duo-message'>No duo queue games with this summoner recently!</p>";
             return 0;
-        else {
-            $winrate = ($matchWins / $matchCount) * 100;
-            // only print out one decimal point
-            $winrate = number_format($winrate, 1);
-            return $winrate;
         }
+        $winrate = ($matchWins / $matchCount) * 100;
+        // only print out one decimal point
+        $winrate = number_format($winrate, 1);
+        return $winrate;
     }
 ?>
