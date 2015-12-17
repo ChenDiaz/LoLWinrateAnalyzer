@@ -18,10 +18,10 @@
           //echo "<h2 class='summoner-id' id='summoner-id-top-margin'>" . $user . " ID: " . $userId . "</h2><br>";
 
           //Same thing for duo partner
-          if ($duoPartner != "") {
+          if ($duoPartner != "")
                $duoPartnerId = getSummonerId($duoPartner);
-               //echo "<h2 class='summoner-id'>" . $duoPartner . " ID: " . $duoPartnerId . "</h2><br><br>";
-          }
+          else
+               $duoPartnerId = "";
 
           // card title
           echo "<div class='results-card card-margin'><h1 id='align-center'><b>(" . $user . ")</b></h1>";
