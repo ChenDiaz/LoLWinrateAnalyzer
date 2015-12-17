@@ -116,9 +116,13 @@
     }
 
     function calculateWinRate($matchWins, $matchCount) {
-      $winrate = ($matchWins / $matchCount) * 100;
-      // only print out one decimal point
-      $winrate = number_format($winrate, 1);
-      return $winrate;
+        if ($matchCount == 0)
+            return 0;
+        else {
+            $winrate = ($matchWins / $matchCount) * 100;
+            // only print out one decimal point
+            $winrate = number_format($winrate, 1);
+            return $winrate;
+        }
     }
 ?>
