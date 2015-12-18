@@ -5,6 +5,14 @@
 				. "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
         $userJson = file_get_contents($userUrl);
         $userData = json_decode($userJson, true);
+
+        // The following two lines are added to revert the
+        // summoner name back from html encoding in order for it to
+        // work with the damn api
+        $user = rawurldecode($user);
+        $user = preg_replace('/\s+/', '', $user);
+        $user = strtolower($user);
+
         $userId = $userData[$user]['id'];
 
         return $userId;
@@ -88,10 +96,10 @@
                 $championName = $arrayOfMatchData[$i]["champPlayed"];
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4 class='won-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [K/D/A] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4 class='lost-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName ." [K/D/A] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
         }
@@ -105,10 +113,10 @@
                 $championName = $arrayOfMatchData[$i]["champPlayed"];
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4 class='won-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName . " (won) </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [K/D/A] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4 class='lost-message'>Game " . ($i + 1) . ": --- Champion played: " . $championName ." (lost) </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName ." [K/D/A] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
         }
@@ -116,9 +124,13 @@
     }
 
     function calculateWinRate($matchWins, $matchCount) {
-      $winrate = ($matchWins / $matchCount) * 100;
-      // only print out one decimal point
-      $winrate = number_format($winrate, 1);
-      return $winrate;
+        if ($matchCount == 0) {
+            echo "<p id='no-duo-message'>No duo queue games with this summoner recently!</p>";
+            return "N/A";
+        }
+        $winrate = ($matchWins / $matchCount) * 100;
+        // only print out one decimal point
+        $winrate = number_format($winrate, 1);
+        return $winrate . "%";
     }
 ?>

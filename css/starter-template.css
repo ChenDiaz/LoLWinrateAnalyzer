@@ -31,7 +31,8 @@ body {
 	float: left;
 	margin: 2% 2%;
 	padding: 2% 4% 4% 4%;
-	max-width: 50%;
+	max-width: 46%;
+	min-width: 43%;
 }
 
 #lol-background-image {
@@ -45,6 +46,11 @@ body {
 
 .button-rounded {
 	border-radius: 10px;
+}
+
+#button-size {
+	width: 7em;
+	height: 3.5em;
 }
 
 #yellow {
@@ -70,6 +76,14 @@ body {
 
 .card-margin {
 	margin-top: 10%;
+}
+
+#no-duo-message {
+	font-size: 200%;
+}
+
+#light-title {
+	color: #555;
 }
 
 
