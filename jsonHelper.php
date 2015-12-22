@@ -110,11 +110,11 @@
 	}
 
     function printMatches($arrayOfMatchData, $numberOfMatches, $playedSolo) {
-        //<img src="smiley.gif" alt="Smiley face" height="42" width="42">
         $gamesWon = 0;
         for ($i = 0; $i < $numberOfMatches; $i++) {
             if ($arrayOfMatchData[$i]["playedSolo"] == $playedSolo) {
-                $championName = $arrayOfMatchData[$i]["champPlayed"];
+                $championName = strtoupper($arrayOfMatchData[$i]["champPlayed"]);
+                $championName = str_pad($championName, 10, "_");
                 $kills = $arrayOfMatchData[$i]["kills"];
                 $deaths = $arrayOfMatchData[$i]["deaths"];
                 $assists = $arrayOfMatchData[$i]["assists"];
@@ -129,7 +129,8 @@
                 $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
                 $date = '<span id="date-color"><b>' . $arrayOfMatchData[$i]["date"] . '<b></span>';
 
-                echo "<h4>" . $date . " " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                echo "<h4 id='match-font'>" . $date . " " . $img . " <span id='champion-underlined'>" . $championName . 
+                                        "</span>" . " [" . $kills . "/" . $deaths . "/" . $assists;
 
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;

@@ -27,7 +27,6 @@
           echo "<div class='results-card card-margin'><h1 class='align-center'><b>(" . $userUntrimmed . ")</b></h1>";
           echo "<h3 id='ranked-match-background'>Recent Solo Matches</h3>";
 
-
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
 

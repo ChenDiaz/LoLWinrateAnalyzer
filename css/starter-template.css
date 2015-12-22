@@ -91,7 +91,15 @@ body {
 }
 
 #date-color {
-	color: #0000B0;
+	color: #000090;
+}
+
+#match-font {
+	font-family: 'Lucida Console';
+}
+
+#champion-underlined {
+	text-decoration: underline;
 }
 
 
