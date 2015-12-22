@@ -24,7 +24,7 @@
           $duoPartnerId = ($duoPartner != "") ? getSummonerId($duoPartner) : "";
 
           // card title
-          echo "<div class='results-card card-margin'><h1 id='align-center'><b>(" . $userUntrimmed . ")</b></h1>";
+          echo "<div class='results-card card-margin'><h1 class='align-center'><b>(" . $userUntrimmed . ")</b></h1>";
           echo "<h3 id='ranked-match-background'>Recent Solo Matches</h3>";
 
 

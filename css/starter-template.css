@@ -58,7 +58,7 @@ body {
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
-#align-center {
+.align-center {
 	text-align: center;
 }
 
