@@ -45,7 +45,7 @@
           if ($duoPartner != "")
                echo "<h1 id='align-center'><span id='light-title'>Duo with</span><b> (" . $duoPartnerUntrimmed . ")</h1></b>";
           else
-               echo "<h1 id='align-center'><span id='light-title'>No duo partner</h1></b>";
+               echo "<h1 class='align-center'><span id='light-title'>No duo partner specified</h1></b>";
 
           echo "<h3 id='ranked-match-background'>Recent Duo Matches</h3>";
           $duoGamesWon = printDuoGamesWon($arrayOfMatchData, $matchCount);

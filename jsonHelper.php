@@ -21,7 +21,7 @@
 
 	function getMatchList($userId) {
 		$userMatchIdUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" . $userId 
-				. "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=12&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
+				. "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
         $userMatchIdJSON = file_get_contents($userMatchIdUrl);
         $userMatchList = json_decode($userMatchIdJSON, true);
 
@@ -65,6 +65,10 @@
             $deaths = "";
             $assists = "";
 
+            $epochTime = $userMatchList["matches"][$i]["timestamp"];
+            // $date is in "epoch time" format, so we need to convert it
+            $date = date('M/d/y', $epochTime/1000); // divide by 1000 to get "Unix epoch"
+
             // This loop figures out which games are played solo and which ones are played duo
             for ($j = 0; $j < 10; $j++) {
                 $summonerId = $userMatch["participantIdentities"][$j]["player"]["summonerId"];
@@ -88,7 +92,7 @@
 
             $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
 
-            // Things in the associative array: champ played, match won, soloOrDuo, and KDA
+            // Things in the associative array: champ played, match won, soloOrDuo, KDA, and match date
             $individualMatchArray["champPlayed"] = $championName;
             $individualMatchArray["matchWon"] = $matchWon;
             $individualMatchArray["playedSolo"] = $playedSolo;
@@ -96,6 +100,7 @@
             $individualMatchArray["kills"] = $kills;
             $individualMatchArray["deaths"] = $deaths;
             $individualMatchArray["assists"] = $assists;
+            $individualMatchArray["date"] = $date;
 
             // collect the info about each match into an array of associative arrays
             array_push($overallMatchDataArray, $individualMatchArray);
@@ -120,9 +125,11 @@
                 if (!$pictureExists) {
                     $pictureFilePath = "css/ChampionImg/ChampionSquare.png";
                 }
-                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
 
-                echo "<h4>Game " . ($i + 1) . ": " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
+                $date = '<span id="date-color">' . $arrayOfMatchData[$i]["date"] . '</span>';
+
+                echo "<h4>" . $date . " " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
 
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
@@ -153,7 +160,7 @@
                 }
                 $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
 
-                echo "<h4>Game " . ($i + 1) . ": " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                echo "<h4>" . $arrayOfMatchData[$i]["date"] . " " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
 
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
