@@ -1,4 +1,5 @@
 <?php
+    // (Temporary here for easier api usage) Farari Summoner ID: 21329461
 	//General function for getting and decoding user JSON data
 	function getSummonerId($user) {
 		$userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" . $user 
@@ -6,7 +7,7 @@
         $userJson = file_get_contents($userUrl);
         $userData = json_decode($userJson, true);
 
-        // The following two lines are added to revert the
+        // The following three lines are added to revert the
         // summoner name back from html encoding in order for it to
         // work with the damn api
         $user = rawurldecode($user);
@@ -59,12 +60,21 @@
             $userMatchJSON = file_get_contents($userMatchURL);
             $userMatch = json_decode($userMatchJSON, true);
 
+            $userParticipantId = 0;
+            $kills = "";
+            $deaths = "";
+            $assists = "";
+
+            // This loop figures out which games are played solo and which ones are played duo
             for ($j = 0; $j < 10; $j++) {
                 $summonerId = $userMatch["participantIdentities"][$j]["player"]["summonerId"];
                 if ($summonerId == $userId)
                 {
-                     // the user is one of summoners 1-10 –– the "participantId"
-                     $userParticipantId = $userMatch["participantIdentities"][$j]["participantId"];
+                    // the user is one of summoners 1-10 –– the "participantId"
+                    $userParticipantId = $userMatch["participantIdentities"][$j]["participantId"];
+                    $kills = $userMatch["participants"][$j]["stats"]["kills"];
+                    $deaths = $userMatch["participants"][$j]["stats"]["deaths"];
+                    $assists = $userMatch["participants"][$j]["stats"]["assists"];
                 }
                 if ($summonerId == $duoId) {
                     $playedSolo = false;
@@ -78,14 +88,19 @@
 
             $matchWon = $userMatch["participants"][$userParticipantId - 1]["stats"]["winner"];
 
-            // Need 3 things in the associative array: champ played, match won, soloOrDuo
+            // Things in the associative array: champ played, match won, soloOrDuo, and KDA
             $individualMatchArray["champPlayed"] = $championName;
             $individualMatchArray["matchWon"] = $matchWon;
             $individualMatchArray["playedSolo"] = $playedSolo;
             $individualMatchArray["numberOfSoloGames"] = $numberOfSoloGames;
+            $individualMatchArray["kills"] = $kills;
+            $individualMatchArray["deaths"] = $deaths;
+            $individualMatchArray["assists"] = $assists;
 
+            // collect the info about each match into an array of associative arrays
             array_push($overallMatchDataArray, $individualMatchArray);
         }
+
         return $overallMatchDataArray;
 	}
 
@@ -94,12 +109,18 @@
         for ($i = 0; $i < $numberOfMatches; $i++) {
             if ($arrayOfMatchData[$i]["playedSolo"] == true) {
                 $championName = $arrayOfMatchData[$i]["champPlayed"];
+                $kills = $arrayOfMatchData[$i]["kills"];
+                $deaths = $arrayOfMatchData[$i]["deaths"];
+                $assists = $arrayOfMatchData[$i]["assists"];
+
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [K/D/A] <span class='won-message'>(won)</span> </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                    echo "] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName ." [K/D/A] <span class='lost-message'>(lost)<span> </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                    echo "] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
         }
@@ -111,12 +132,18 @@
         for ($i = 0; $i < $numberOfMatches; $i++) {
             if ($arrayOfMatchData[$i]["playedSolo"] == false) {
                 $championName = $arrayOfMatchData[$i]["champPlayed"];
+                $kills = $arrayOfMatchData[$i]["kills"];
+                $deaths = $arrayOfMatchData[$i]["deaths"];
+                $assists = $arrayOfMatchData[$i]["assists"];
+
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [K/D/A] <span class='won-message'>(won)</span> </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                    echo "] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName ." [K/D/A] <span class='lost-message'>(lost)<span> </h4>";
+                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+                    echo "] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
         }
