@@ -35,7 +35,7 @@
           $arrayOfMatchData = individualMatchData($matchCount, $userMatchList, $userId, $duoPartnerId);
           $numberOfSoloGames = $arrayOfMatchData[$matchCount-1]["numberOfSoloGames"];
           
-          $soloGamesWon = printSoloGamesWon($arrayOfMatchData, $matchCount);
+          $soloGamesWon = printMatches($arrayOfMatchData, $matchCount, true);
           $soloWinRate = calculateWinrate($soloGamesWon, $numberOfSoloGames);
 
           echo "<h1>Solo winrate: <span id='yellow'>" . $soloWinRate . "</span></h1></div>";
@@ -48,7 +48,7 @@
                echo "<h1 class='align-center'><span id='light-title'>No duo partner specified</h1></b>";
 
           echo "<h3 id='ranked-match-background'>Recent Duo Matches</h3>";
-          $duoGamesWon = printDuoGamesWon($arrayOfMatchData, $matchCount);
+          $duoGamesWon = printMatches($arrayOfMatchData, $matchCount, false);
           $numberOfDuoGames = $matchCount - $numberOfSoloGames;
           $duoWinRate = calculateWinrate($duoGamesWon, $numberOfDuoGames);
           echo "<h1>Duo winrate: <span id='yellow'>" . $duoWinRate . "</span></h1></div>";
