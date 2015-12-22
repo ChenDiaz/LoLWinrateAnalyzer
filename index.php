@@ -45,7 +45,7 @@
             <label>Duo's Username:</label>
             <input type="text" class="form-control" name="duoPartner">
             <br>
-            <button class="btn-primary button-rounded" id='button-size'>Submit</button>
+            <button class="btn-primary rounded" id='button-size'>Submit</button>
           </div>
         </form>
       </div>

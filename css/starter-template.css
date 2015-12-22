@@ -44,8 +44,12 @@ body {
 	font-family: 'Arial Black';
 }
 
-.button-rounded {
+.rounded {
 	border-radius: 10px;
+}
+
+#champ-rounded {
+	border-radius: 7px;
 }
 
 #button-size {

@@ -105,6 +105,7 @@
 	}
 
     function printSoloGamesWon($arrayOfMatchData, $numberOfMatches) {
+        //<img src="smiley.gif" alt="Smiley face" height="42" width="42">
         $gamesWon = 0;
         for ($i = 0; $i < $numberOfMatches; $i++) {
             if ($arrayOfMatchData[$i]["playedSolo"] == true) {
@@ -113,13 +114,21 @@
                 $deaths = $arrayOfMatchData[$i]["deaths"];
                 $assists = $arrayOfMatchData[$i]["assists"];
 
+                $championNameStripped = preg_replace("/[^a-zA-Z0-9]+/", "", $championName);
+                $pictureFilePath = "css/ChampionImg/" . $championNameStripped . "Square.png";
+                $pictureExists = file_exists($pictureFilePath);
+                if (!$pictureExists) {
+                    $pictureFilePath = "css/ChampionImg/ChampionSquare.png";
+                }
+                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
+
+                echo "<h4>Game " . ($i + 1) . ": " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
                     echo "] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
                     echo "] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
@@ -136,13 +145,21 @@
                 $deaths = $arrayOfMatchData[$i]["deaths"];
                 $assists = $arrayOfMatchData[$i]["assists"];
 
+                $championNameStripped = preg_replace("/[^a-zA-Z0-9]+/", "", $championName);
+                $pictureFilePath = "css/ChampionImg/" . $championNameStripped . "Square.png";
+                $pictureExists = file_exists($pictureFilePath);
+                if (!$pictureExists) {
+                    $pictureFilePath = "css/ChampionImg/ChampionSquare.png";
+                }
+                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
+
+                echo "<h4>Game " . ($i + 1) . ": " . $img . " " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
+
                 if ($arrayOfMatchData[$i]["matchWon"] == true) {
                     $gamesWon++;
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
                     echo "] <span class='won-message'>(won)</span> </h4>";
                 }
                 else {
-                    echo "<h4>Game " . ($i + 1) . ": --- " . $championName . " [" . $kills . "/" . $deaths . "/" . $assists;
                     echo "] <span class='lost-message'>(lost)<span> </h4>";
                 }
             }
