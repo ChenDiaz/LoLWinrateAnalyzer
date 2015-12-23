@@ -1,4 +1,3 @@
-
 <?php
      /*
           **********************************************************************
@@ -34,9 +33,13 @@
           $arrayOfMatchData = individualMatchData($matchCount, $userMatchList, $userId, $duoPartnerId);
           $numberOfSoloGames = $arrayOfMatchData[$matchCount-1]["numberOfSoloGames"];
           
-          $soloGamesWon = printMatches($arrayOfMatchData, $matchCount, true);
-          $soloWinRate = calculateWinrate($soloGamesWon, $numberOfSoloGames);
+          $soloWinLostArray = MatchesWon($arrayOfMatchData, $matchCount, true);
+          $soloWins = $soloWinLostArray["gamesWon"];
+          $soloLosses = $soloWinLostArray["gamesLost"];
+          $soloWinRate = calculateWinrate($soloWins, $numberOfSoloGames);
 
+          echo "<h2>Wins: <span class='won-message'>" . $soloWins . "</span> Losses: <span class='lost-message'>"
+                          . $soloLosses . "</span></h2>";
           echo "<h1>Solo winrate: <span id='yellow'>" . $soloWinRate . "</span></h1></div>";
 
           echo "<div class='results-card card-margin'>";
@@ -47,9 +50,15 @@
                echo "<h1 class='align-center'><span id='light-title'>No duo partner specified</h1></b>";
 
           echo "<h3 id='ranked-match-background'>Recent Duo Matches</h3>";
-          $duoGamesWon = printMatches($arrayOfMatchData, $matchCount, false);
+
+          $duoWinLostArray = MatchesWon($arrayOfMatchData, $matchCount, false);
           $numberOfDuoGames = $matchCount - $numberOfSoloGames;
-          $duoWinRate = calculateWinrate($duoGamesWon, $numberOfDuoGames);
+          $duoWins = $duoWinLostArray["gamesWon"];
+          $duoLosses = $duoWinLostArray["gamesLost"];
+          $duoWinRate = calculateWinrate($duoWins, $numberOfDuoGames);
+
+          echo "<h2>Wins: <span class='won-message'>" . $duoWins . "</span> Losses: <span class='lost-message'>"
+                          . $duoLosses . "</span></h2>";
           echo "<h1>Duo winrate: <span id='yellow'>" . $duoWinRate . "</span></h1></div>";
           echo "</div>";
      }

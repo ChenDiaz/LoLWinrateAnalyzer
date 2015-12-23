@@ -4,17 +4,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="SoloOrDuo">
+    <meta name="description" content="Solo/Duo">
     <meta name="author" content="Cesar Diaz and Scott Chen">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>SoloOrDuo</title>
+    <title>Solo/Duo</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
@@ -29,14 +32,14 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-          <a class="navbar-brand" href="index.php">Solo Or Duo</a>
+          <a class="navbar-brand" href="index.php">Solo / Duo</a>
       </div>
     </nav>
 
     <div class="container">
       <div class="starter-template">
-        <div class="card">
-        <h1 id="title-font">Solo Or Duo</h1>
+        <div class="card" id='button-jquery'>
+        <h1 id="title-font">Solo / Duo</h1>
         <p class="lead"> Enter your summoner names to calculate your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">
           <div class="form-group">
@@ -45,13 +48,14 @@
             <label>Duo's Username:</label>
             <input type="text" class="form-control" name="duoPartner">
             <br>
-            <button class="btn-primary rounded" id='button-size'>Submit</button>
+            <button id='button-jquery' class="btn-primary rounded" id='button-size'>Submit</button>
           </div>
         </form>
       </div>
       </div>
     </div>
 
+    <script src="tempJquery.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
