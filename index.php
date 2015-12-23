@@ -38,7 +38,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <div class="card" id='button-jquery'>
+        <div class="card">
         <h1 id="title-font">Solo / Duo</h1>
         <p class="lead"> Enter your summoner names to calculate your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">
@@ -48,7 +48,7 @@
             <label>Duo's Username:</label>
             <input type="text" class="form-control" name="duoPartner">
             <br>
-            <button id='button-jquery' class="btn-primary rounded" id='button-size'>Submit</button>
+            <button id='button-jquery' class="btn-primary rounded btn-lg">Submit</button>
           </div>
         </form>
       </div>

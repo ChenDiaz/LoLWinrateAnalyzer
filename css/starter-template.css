@@ -52,11 +52,6 @@ body {
 	border-radius: 7px;
 }
 
-#button-size {
-	width: 7em;
-	height: 3.5em;
-}
-
 #yellow {
 	color: #FFD700;
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
