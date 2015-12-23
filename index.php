@@ -7,6 +7,7 @@
     <meta name="description" content="Solo/Duo">
     <meta name="author" content="Cesar Diaz and Scott Chen">
     <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans">
 
     <title>Solo/Duo</title>
 
@@ -40,12 +41,12 @@
       <div class="starter-template">
         <div class="card">
         <h1 id="title-font">Solo / Duo</h1>
-        <p class="lead"> Enter your summoner names to calculate your solo and duo win rates! </p>
+        <p class="lead" id="title-description"> Enter your summoner names to calculate your solo and duo win rates! </p>
         <form action="results.php" role="form" method="post">
           <div class="form-group">
-            <label>Username:</label>
+            <label class="form-text-size">Your Summoner Name:</label>
             <input type="text" class="form-control" name="user">
-            <label>Duo's Username:</label>
+            <label class="form-text-size">Duo's Summoner Name:</label>
             <input type="text" class="form-control" name="duoPartner">
             <br>
             <button id='button-jquery' class="btn-primary rounded btn-lg">Submit</button>

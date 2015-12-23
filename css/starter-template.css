@@ -18,9 +18,9 @@ body {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
 	width: 40%;
-	min-width: 200px;
+	min-width: 250px;
 	height: 60%;
-	min-height: 460px;
+	min-height: 500px;
 	margin: 10% auto;
 	padding: 5% 5%;
 }
@@ -97,5 +97,28 @@ body {
 	text-decoration: underline;
 }
 
+.form-text-size {
+	font-size: 110%;
+}
+
+.lead  {
+	font-family: "Fira Sans", serif;
+}
+
+#title-description {
+	padding-top: 12px;
+}
+
+@media (max-width: 768px) {
+  #title-font {
+  	font-size: 24px;
+  }
+  .form-text-size {
+	font-size: 90%;
+  }
+  .card {
+  	min-height: 420px;
+  }
+}
 
 

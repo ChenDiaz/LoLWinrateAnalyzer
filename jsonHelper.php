@@ -115,7 +115,7 @@
         $winLossArray = array();
         for ($i = 0; $i < $numberOfMatches; $i++) {
             if ($arrayOfMatchData[$i]["playedSolo"] == $playedSolo) {
-                $championName = strtoupper($arrayOfMatchData[$i]["champPlayed"]);
+                $championName = $arrayOfMatchData[$i]["champPlayed"];
                 $championName = str_pad($championName, 10);
                 $kills = $arrayOfMatchData[$i]["kills"];
                 $deaths = $arrayOfMatchData[$i]["deaths"];
