@@ -118,6 +118,7 @@ body {
   }
   .card {
   	min-height: 420px;
+  	max-height: 440px;
   }
 }
 

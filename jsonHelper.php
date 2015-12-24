@@ -67,7 +67,7 @@
 
             $epochTime = $userMatchList["matches"][$i]["timestamp"];
             // $date is in "epoch time" format, so we need to convert it
-            $date = date('M/d/y', $epochTime/1000); // divide by 1000 to get "Unix epoch"
+            $date = date('M d, y', $epochTime/1000); // divide by 1000 to get "Unix epoch"
 
             // This loop figures out which games are played solo and which ones are played duo
             for ($j = 0; $j < 10; $j++) {
