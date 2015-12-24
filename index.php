@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <script src="tempJquery.js"></script>
+    <script src="/js/buttonJquery.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
