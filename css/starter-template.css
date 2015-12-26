@@ -48,7 +48,7 @@ body {
 	border-radius: 10px;
 }
 
-#champ-rounded {
+.champ-rounded {
 	border-radius: 7px;
 }
 
@@ -121,5 +121,56 @@ body {
   	max-height: 440px;
   }
 }
+
+.nav-bar-position {
+	float: right;
+}
+
+.card {
+	background: rgba(220, 220, 220, 0.82);
+	border-radius: 20px;
+	width: 50%;
+	min-width: 250px;
+	height: 60%;
+	min-height: 500px;
+	margin: 10% auto;
+	padding: 5% 5%;
+}
+
+#ezreal-background-image {
+	background: url("img/ezreal.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#contact-text {
+	text-align: left;
+	margin-top: 25px;
+}
+
+.profile-pic-rounded {
+	border-radius: 25px;
+}
+
+#contact-margin {
+	margin-top: 7%;
+}
+
+.contact-name-font-size {
+	font-size: 25px;
+}
+
+.contact-email-font-size {
+	font-size: 15px;
+}
+
+.person {
+	display: inline-block;
+	padding-right: 5%;
+}
+
+
+
+
 
 

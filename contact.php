@@ -4,21 +4,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Solo/Duo">
-    <meta name="author" content="Cesar Diaz and Scott Chen">
+    <meta name="description" content="SoloOrDuo">
+    <meta name="author" content="Cesar Diaz">
     <link rel="icon" href="../../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans">
 
-    <title>Solo/Duo</title>
+    <title>SoloOrDuo</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
-
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
@@ -29,7 +25,7 @@
     <![endif]-->
   </head>
 
-  <body id="lol-background-image">
+  <body id="ezreal-background-image">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -39,25 +35,30 @@
     </nav>
 
     <div class="container">
-      <div class="starter-template">
+        <div class="starter-template">
         <div class="card">
-        <h1 id="title-font">Solo / Duo</h1>
-        <p class="lead" id="title-description"> Enter your summoner names to calculate your solo and duo win rates! </p>
-        <form action="results.php" role="form" method="post">
-          <div class="form-group">
-            <label class="form-text-size">Your Summoner Name:</label>
-            <input type="text" class="form-control" name="user">
-            <label class="form-text-size">Duo's Summoner Name:</label>
-            <input type="text" class="form-control" name="duoPartner">
-            <br>
-            <button id='button-jquery' class="btn-primary rounded btn-lg">Submit</button>
-          </div>
-        </form>
+        <h1 id="title-font">Contact Us</h1>
+        <div id="contact-margin">
+        <?php
+          $pictureFilePath = "css/img/Scott.png";
+          $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="150" width="150" class="profile-pic-rounded">';
+
+          echo "<div class='person'><h4 id='match-font'>" . $img . "</h4>";
+          echo "<div><p class='contact-name-font-size'>Scott Chen</p>";
+          echo "<p class='contact-email-font-size'>scottchen625@gmail.com</p></div>";
+          echo "</div>";
+
+          $pictureFilePath = "css/img/Alex.png";
+          $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="150" width="150" class="profile-pic-rounded">';
+
+          echo "<div class='person'><h4 id='match-font'>" . $img . "</h4>";
+          echo "<div><p class='contact-name-font-size'>Alex Diaz</p></div>";
+          echo "<div><p class='contact-email-font-size'>calexdiaz143@gmail.com</p></div></div>";
+        ?>
+        </div>
       </div>
       </div>
     </div>
-
-    <script src="/js/buttonJquery.js"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

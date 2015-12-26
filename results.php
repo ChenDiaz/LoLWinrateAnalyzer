@@ -30,6 +30,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
           <a class="navbar-brand" href="index.php">Solo / Duo</a>
+          <a class="navbar-brand nav-bar-position" href="contact.php">Contact</a>
       </div>
     </nav>
 

@@ -1,6 +1,5 @@
 <?php
     // (Temporary here for easier api usage) Farari Summoner ID: 21329461
-    //General function for getting and decoding user JSON data
     function getSummonerId($user) {
         $userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" . $user 
                 . "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
@@ -128,7 +127,7 @@
                     $pictureFilePath = "css/ChampionImg/ChampionSquare.png";
                 }
 
-                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" id="champ-rounded">';
+                $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="30" width="30" class="champ-rounded">';
                 $date = '<span id="date-color"><b>' . $arrayOfMatchData[$i]["date"] . '<b></span>';
 
                 echo "<h4 id='match-font'>" . $date . " " . $img . " <span>" . $championName . 
