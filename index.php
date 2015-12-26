@@ -50,7 +50,7 @@
             <label class="form-text-size">Duo's Summoner Name:</label>
             <input type="text" class="form-control" name="duoPartner">
             <br>
-            <button id='button-jquery' class="btn-primary rounded btn-lg">Submit</button>
+            <button id="button-jquery" class="button-padding btn-primary rounded btn-lg">Submit</button>
           </div>
         </form>
       </div>

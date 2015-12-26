@@ -158,6 +158,14 @@
         $winrate = ($matchWins / $matchCount) * 100;
         // only print out one decimal point
         $winrate = number_format($winrate, 1);
-        return $winrate . "%";
+        return $winrate;
+    }
+
+    function winRateColor($winrate) {
+        if ($winrate > 50.5)
+            return "green";
+        if ($winrate > 45)
+            return "yellow";
+        return "red";
     }
 ?>

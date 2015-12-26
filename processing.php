@@ -37,10 +37,11 @@
           $soloWins = $soloWinLostArray["gamesWon"];
           $soloLosses = $soloWinLostArray["gamesLost"];
           $soloWinRate = calculateWinrate($soloWins, $numberOfSoloGames);
+          $winRateColor = winRateColor($soloWinRate);
 
           echo "<h2>Wins: <span class='won-message'>" . $soloWins . "</span> Losses: <span class='lost-message'>"
                           . $soloLosses . "</span></h2>";
-          echo "<h1>Solo winrate: <span id='yellow'>" . $soloWinRate . "</span></h1></div>";
+          echo "<h1>Solo winrate: <span id='" . $winRateColor . "'>" . $soloWinRate . "%</span></h1></div>";
 
           echo "<div class='results-card card-margin'>";
 
@@ -56,10 +57,11 @@
           $duoWins = $duoWinLostArray["gamesWon"];
           $duoLosses = $duoWinLostArray["gamesLost"];
           $duoWinRate = calculateWinrate($duoWins, $numberOfDuoGames);
+          $winRateColor = winRateColor($duoWinRate);
 
           echo "<h2>Wins: <span class='won-message'>" . $duoWins . "</span> Losses: <span class='lost-message'>"
                           . $duoLosses . "</span></h2>";
-          echo "<h1>Duo winrate: <span id='yellow'>" . $duoWinRate . "</span></h1></div>";
+          echo "<h1>Duo winrate: <span id='" . $winRateColor . "'>" . $duoWinRate . "%</span></h1></div>";
           echo "</div>";
      }
 
