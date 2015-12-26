@@ -122,16 +122,25 @@ body {
   }
 }
 
+/***********************
+	  CONTACT PAGE
+***********************/
+
 .nav-bar-position {
 	float: right;
 }
 
-.card {
+#contact-title {
+	font-family: 'Arial Black';
+	text-decoration: underline;
+}
+
+.contact-card {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
 	width: 50%;
 	min-width: 250px;
-	height: 60%;
+	height: 50%;
 	min-height: 500px;
 	margin: 10% auto;
 	padding: 5% 5%;
@@ -153,7 +162,7 @@ body {
 }
 
 #contact-margin {
-	margin-top: 7%;
+	margin-top: 10%;
 }
 
 .contact-name-font-size {
@@ -169,7 +178,40 @@ body {
 	padding-right: 5%;
 }
 
+@media (max-width: 1200px) {
+  .profile-pic-rounded {
+  	height: 130;
+  	width: 130;
+  }
+  .contact-card {
+  	width: 70%;
+  	min-height: 440px;
+  	height: 50%;
+  }
+}
 
+@media (max-width: 690px) {
+  .profile-pic-rounded {
+  	height: 100;
+  	width: 100;
+  }
+  .contact-card {
+  	min-height: 510px;
+  	height: 60%;
+  	max-height: 520px;
+  	min-width: 160px;
+  }
+  .contact-name-font-size {
+	font-size: 20px;
+  }
+
+  .contact-email-font-size {
+	font-size: 13px;
+  }
+  #contact-title {
+	font-size: 22px;
+  }
+}
 
 
 

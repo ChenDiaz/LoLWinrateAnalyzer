@@ -36,8 +36,8 @@
 
     <div class="container">
         <div class="starter-template">
-        <div class="card">
-        <h1 id="title-font">Contact Us</h1>
+        <div class="contact-card">
+        <h1 id="contact-title">Contact Us</h1>
         <div id="contact-margin">
         <?php
           $pictureFilePath = "css/img/Scott.png";
