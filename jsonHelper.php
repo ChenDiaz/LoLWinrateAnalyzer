@@ -168,4 +168,3 @@
             return "yellow";
         return "red";
     }
-?>

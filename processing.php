@@ -1,9 +1,14 @@
 <?php
      /*
           **********************************************************************
-          We need to handle various error codes in case Riot's api's goes down.
+          Take the following two lines out when we push this to production!!!
           **********************************************************************
      */
+     ini_set('display_errors', 'On');
+     error_reporting(E_ALL | E_STRICT);
+
+
+
      include 'jsonHelper.php';
      
      //Gets data from index.php
@@ -69,4 +74,3 @@
      else {
           echo "<p>Try again but this time enter some usernames ;)</p>";
      }
-?>
