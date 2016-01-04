@@ -3,22 +3,29 @@
     function getSummonerId($user) {
         $userUrl = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" . $user 
                 . "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
-        $userJson = file_get_contents($userUrl);
-        $userData = json_decode($userJson, true);
+        $urlHeader = get_headers($userUrl);
+        //BandAid solution for every http request error
+        if($urlHeader[0] != "HTTP/1.1 200 OK")
+            return 'N/A';
+        else 
+        {
+            $userJson = file_get_contents($userUrl);
+            $userData = json_decode($userJson, true);
 
-        // The following three lines are added to revert the
-        // summoner name back from html encoding in order for it to
-        // work with the damn api
-        $user = rawurldecode($user);
-        $user = preg_replace('/\s+/', '', $user);
-        $user = strtolower($user);
+            // The following three lines are added to revert the
+            // summoner name back from html encoding in order for it to
+            // work with the damn api
+            $user = rawurldecode($user);
+            $user = preg_replace('/\s+/', '', $user);
+            $user = strtolower($user);
 
-        $userId = $userData[$user]['id'];
+            $userId = $userData[$user]['id'];
 
-        return $userId;
+            return $userId;
+        }
     }
 
-    function getMatchList($userId) {
+    function getMatchList($userId) {    
         $userMatchIdUrl = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" . $userId 
                 . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
         $userMatchIdJSON = file_get_contents($userMatchIdUrl);
