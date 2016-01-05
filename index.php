@@ -12,13 +12,10 @@
     <title>Solo/Duo</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
-
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
@@ -49,8 +46,19 @@
             <input id="user" type="text" class="form-control" name="user">
             <label class="form-text-size">Duo's Summoner Name:</label>
             <input type="text" class="form-control" name="duoPartner">
-            <br>
-            <button id="button-jquery" class="button-padding btn-primary rounded btn-lg">Submit</button>
+            <select id="region" name="region">
+              <option value="na">North America</option>
+              <option value="euw">EU West</option>
+              <option value="kr">Korea</option> 
+              <option value="br">Brazil</option>
+              <option value="eune">EU East</option>
+              <option value="lan">Latin America North</option>
+              <option value="las">Latin America South</option>
+              <option value="oce">Oceania</option>
+              <option value="ru">Russia</option>  
+              <option value="tr">Turkey</option>
+            </select>
+            <button id="button-jquery" class="btn-primary rounded btn-lg">Submit</button>
           </div>
         </form>
       </div>
@@ -63,7 +71,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>

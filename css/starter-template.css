@@ -14,10 +14,6 @@ body {
 	color: #D8000C;
 }
 
-.button-padding {
-	margin-top: 9%;
-}
-
 .card {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
@@ -140,6 +136,12 @@ body {
 	height: 40%;	
 }
 
+#region {
+	display: block;
+	text-align: center;
+	margin: 10px auto;
+}
+
 /***********************
 	  CONTACT PAGE
 ***********************/
@@ -230,7 +232,3 @@ body {
 	font-size: 22px;
   }
 }
-
-
-
-

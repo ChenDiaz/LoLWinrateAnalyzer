@@ -13,17 +13,16 @@
      
      //Gets data from index.php
      $userUntrimmed = htmlspecialchars($_POST['user']);
-     // rawurlencode(string) converts spaces to %20
      $user = rawurlencode($userUntrimmed);
+
      $duoPartnerUntrimmed  = htmlspecialchars($_POST['duoPartner']);
      $duoPartner = rawurlencode($duoPartnerUntrimmed);
 
-     //Gets and prints user_id using jsonHelper
      $userId = getSummonerId($user);
 
-     //Same thing for duo partner
      $duoPartnerId = ($duoPartner != "") ? getSummonerId($duoPartner) : "";
 
+     //Processing result
      if($userId != 'N/A' && $duoPartnerId != 'N/A')
      {
           // card title
