@@ -49,14 +49,6 @@
             <select id="region" name="region">
               <option value="na">North America</option>
               <option value="euw">EU West</option>
-              <option value="kr">Korea</option> 
-              <option value="br">Brazil</option>
-              <option value="eune">EU East</option>
-              <option value="lan">Latin America North</option>
-              <option value="las">Latin America South</option>
-              <option value="oce">Oceania</option>
-              <option value="ru">Russia</option>  
-              <option value="tr">Turkey</option>
             </select>
             <button id="button-jquery" class="btn-primary rounded btn-lg">Submit</button>
           </div>
