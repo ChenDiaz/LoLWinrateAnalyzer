@@ -43,7 +43,7 @@
           $pictureFilePath = "css/img/Scott.png";
           $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="150" width="150" class="profile-pic-rounded">';
 
-          echo "<div class='person'><h4 id='match-font'>" . $img . "</h4>";
+          echo "<div class='person'><h4 class='match-font'>" . $img . "</h4>";
           echo "<div><p class='contact-name-font-size'>Scott Chen</p>";
           echo "<p class='contact-email-font-size'>scottchen625@gmail.com</p></div>";
           echo "</div>";
@@ -51,7 +51,7 @@
           $pictureFilePath = "css/img/Alex.png";
           $img = '<img src="' . $pictureFilePath . '" alt="Smiley face" height="150" width="150" class="profile-pic-rounded">';
 
-          echo "<div class='person'><h4 id='match-font'>" . $img . "</h4>";
+          echo "<div class='person'><h4 class='match-font'>" . $img . "</h4>";
           echo "<div><p class='contact-name-font-size'>Alex Diaz</p></div>";
           echo "<div><p class='contact-email-font-size'>calexdiaz143@gmail.com</p></div></div>";
         ?>
