@@ -103,10 +103,6 @@ body {
 	font-family: 'Lucida Console';
 }
 
-#champion-underlined {
-	text-decoration: underline;
-}
-
 .form-text-size {
 	font-size: 110%;
 }

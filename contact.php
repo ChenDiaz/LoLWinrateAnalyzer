@@ -6,7 +6,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="SoloOrDuo">
     <meta name="author" content="Cesar Diaz">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="css/img/favicon.ico">
 
     <title>SoloOrDuo</title>
 
@@ -15,8 +15,6 @@
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
-
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

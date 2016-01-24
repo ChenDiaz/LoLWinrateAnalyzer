@@ -26,8 +26,7 @@
      if($userId != 'N/A' && $duoPartnerId != 'N/A')
      {
           // card title
-          echo "<div class='results-card card-margin'><h1 class='align-center'><b>(" . $userUntrimmed . ")</b></h1>";
-          echo "<h3 id='ranked-match-background'>Recent Solo Matches</h3>";
+          echo "<div class='results-card card-margin'><h1 class='align-center'><b><span id='light-title'>Solo</span> " . $userUntrimmed . "</b></h1>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
@@ -49,11 +48,10 @@
           echo "<div class='results-card card-margin'>";
 
           if ($duoPartner != "")
-               echo "<h1 id='align-center'><span id='light-title'>Duo with</span><b> (" . $duoPartnerUntrimmed . ")</h1></b>";
+               echo "<h1 id='align-center'><span id='light-title'>Duo with</span><b> " . $duoPartnerUntrimmed . "</h1></b>";
           else
                echo "<h1 class='align-center'><span id='light-title'>No duo partner specified</h1></b>";
 
-          echo "<h3 id='ranked-match-background'>Recent Duo Matches</h3>";
 
           $duoWinLostArray = MatchesWon($arrayOfMatchData, $matchCount, false);
           $numberOfDuoGames = $matchCount - $numberOfSoloGames;
