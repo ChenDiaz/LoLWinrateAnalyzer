@@ -35,7 +35,7 @@
 
     <div class="container">
       <div class="starter-template">
-        <div class="card">
+        <div class="start-card">
         <h1 id="title-font">Solo / Duo</h1>
         <p class="lead" id="title-description"> Enter your summoner names to calculate your ranked solo and duo win rates! </p>
         <form name="form" action="results.php" onsubmit="return validateForm()" role="form" method="post">

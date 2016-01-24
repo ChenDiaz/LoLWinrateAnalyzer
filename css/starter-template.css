@@ -1,20 +1,52 @@
+
+/***********************
+	  General
+***********************/
+
 body {
   padding-top: 50px;
 }
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
 }
 
-.won-message {
-	color: #4F8A10;
+#lol-background-image {
+	background: url("img/League.jpg");
+	background-size: cover;
 }
 
-.lost-message {
-	color: #D8000C;
+.rounded {
+	border-radius: 10px;
 }
 
-.card {
+.align-center {
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+  #title-font {
+  	font-size: 24px;
+  }
+  .form-text-size {
+	font-size: 90%;
+  }
+  .card {
+  	min-height: 420px;
+  	max-height: 440px;
+  }
+}
+
+/***********************
+	  START PAGE
+***********************/
+
+#title-font {
+	font-family: 'Arial Black';
+}
+
+.start-card {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
 	width: 40%;
@@ -25,31 +57,79 @@ body {
 	padding: 5% 5%;
 }
 
+.form-text-size {
+	font-size: 110%;
+}
+
+.lead  {
+	font-family: "Fira Sans", serif;
+}
+
+#title-description {
+	padding-top: 12px;
+}
+
+#region {
+	display: block;
+	text-align: center;
+	margin: 10px auto;
+}
+
+/***********************
+	  RESULTS PAGE
+***********************/
+
+#no-duo-message {
+	font-size: 200%;
+}
+
+#light-title {
+	color: #555;
+}
+
+#date-color {
+	color: #000090;
+}
+
+.won-message {
+	color: #4F8A10;
+}
+
+.lost-message {
+	color: #D8000C;
+}
+
 .results-card {
 	background: rgba(220, 220, 220, 0.82);
 	border-radius: 20px;
 	float: left;
-	margin: 2% 2%;
+	margin: 15% 2% 2%;
 	padding: 2% 4% 4% 4%;
 	max-width: 46%;
 	min-width: 43%;
 }
 
-#lol-background-image {
-	background: url("img/League.jpg");
-	background-size: cover;
-}
-
-#title-font {
-	font-family: 'Arial Black';
-}
-
-.rounded {
-	border-radius: 10px;
+.match-font {
+	font-family: 'Lucida Console';
 }
 
 .champ-rounded {
 	border-radius: 7px;
+}
+
+#ranked-match-background {
+	background: rgba(86, 144, 240, 0.4);
+	text-align: center;
+	border-radius: 12px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: -0.5em;
+	padding-right: -0.5em;
+	max-width: 80%;
+}
+
+.card-margin {
+	margin-top: 10%;
 }
 
 #yellow {
@@ -67,75 +147,12 @@ body {
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
-.align-center {
-	text-align: center;
-}
-
-
-#ranked-match-background {
-	background: rgba(86, 144, 240, 0.4);
-	text-align: center;
-	border-radius: 12px;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	padding-left: -0.5em;
-	padding-right: -0.5em;
-	max-width: 80%;
-}
-
-.card-margin {
-	margin-top: 10%;
-}
-
-#no-duo-message {
-	font-size: 200%;
-}
-
-#light-title {
-	color: #555;
-}
-
-#date-color {
-	color: #000090;
-}
-
-.match-font {
-	font-family: 'Lucida Console';
-}
-
-.form-text-size {
-	font-size: 110%;
-}
-
-.lead  {
-	font-family: "Fira Sans", serif;
-}
-
-#title-description {
-	padding-top: 12px;
-}
-
-@media (max-width: 768px) {
-  #title-font {
-  	font-size: 24px;
-  }
-  .form-text-size {
-	font-size: 90%;
-  }
-  .card {
-  	min-height: 420px;
-  	max-height: 440px;
-  }
-}
+/***********************
+	  ERROR PAGE
+***********************/
 
 #errorAmumu {
 	height: 40%;	
-}
-
-#region {
-	display: block;
-	text-align: center;
-	margin: 10px auto;
 }
 
 /***********************

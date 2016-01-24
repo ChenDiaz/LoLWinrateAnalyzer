@@ -1,11 +1,14 @@
 <?php
+    
+    $configs = include('config.php');
+    define("apiKey", $configs['apiKey']);
 
     $region = $_POST['region'];
     define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region); 
 
     function getSummonerId($user) {
         $userUrl = regionUrl . "/v1.4/summoner/by-name/" . $user 
-                . "?api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
+                . "?api_key=" . apiKey;
         $urlHeader = get_headers($userUrl);
         //BandAid solution for every http request error
         if($urlHeader[0] != "HTTP/1.1 200 OK")
@@ -30,7 +33,7 @@
 
     function getMatchList($userId) {    
         $userMatchIdUrl = regionUrl . "/v2.2/matchlist/by-summoner/" . $userId 
-                . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=5416b2e6-d64c-4826-8b68-3cb6ee7489ff";
+                . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=" . apiKey;
         $userMatchIdJSON = file_get_contents($userMatchIdUrl);
         $userMatchList = json_decode($userMatchIdJSON, true);
 
@@ -46,7 +49,7 @@
             $playedSolo = true;
 
             $userMatchURL = regionUrl . "/v2.2/match/" . $userMatchList["matches"][$i]["matchId"] 
-                    . "?api_key=451d171b-aefb-4b11-ba80-212cbbcc9d79";
+                    . "?api_key=" . apiKey;
             $userMatchJSON = file_get_contents($userMatchURL);
             $userMatch = json_decode($userMatchJSON, true);
 
