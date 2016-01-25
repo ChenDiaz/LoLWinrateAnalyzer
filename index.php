@@ -44,11 +44,13 @@
             <input id="user" type="text" class="form-control" name="user">
             <label class="form-text-size">Duo's Summoner Name:</label>
             <input type="text" class="form-control" name="duoPartner">
-            <select id="region" name="region">
-              <option value="na">North America</option>
-              <option value="euw">EU West</option>
-            </select>
-            <button id="button-jquery" class="btn-primary rounded btn-lg">Submit</button>
+            <div id="region-select">
+              <select id="region" name="region">
+                <option value="na">North America</option>
+                <option value="euw">EU West</option>
+              </select>
+            </div>
+            <button id="submit-button" class="btn-primary rounded btn-lg">Submit</button>
           </div>
         </form>
       </div>

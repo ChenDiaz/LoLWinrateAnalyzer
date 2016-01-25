@@ -52,7 +52,7 @@ body {
 	width: 40%;
 	min-width: 250px;
 	height: 60%;
-	min-height: 500px;
+	min-height: 550px;
 	margin: 10% auto;
 	padding: 5% 5%;
 }
@@ -72,7 +72,17 @@ body {
 #region {
 	display: block;
 	text-align: center;
-	margin: 10px auto;
+	margin: 15px auto;
+	border: 5px solid white;
+	background: white;
+	-moz-appearance: none;
+    -webkit-appearance:none;
+}
+
+@media (max-width: 991px) and (min-width: 769px) {
+	.start-card {
+		height: 85%;
+	}
 }
 
 /***********************

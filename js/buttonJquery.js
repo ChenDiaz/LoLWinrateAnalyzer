@@ -5,8 +5,8 @@ function validateForm() {
     	return false;
     }
     else {
-    	$('#button-jquery').css('background-color','red');
-      	$('#button-jquery').html('Loading');
+    	$('#submit-button').css('background-color','red');
+      	$('#submit-button').html('Loading');
       	return true;
     }
 }
