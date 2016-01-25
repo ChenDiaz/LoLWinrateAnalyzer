@@ -85,6 +85,13 @@ body {
 	}
 }
 
+@media (max-width: 768px) {
+	.start-card {
+		height: 40%
+		min-height: 0px;
+	}
+}
+
 /***********************
 	  RESULTS PAGE
 ***********************/
@@ -155,6 +162,15 @@ body {
 #red {
 	color: #D8000C;
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+@media (max-width: 700px) {
+	.results-card {
+		float: none;
+		display: block;
+		padding: 2%;
+		margin: auto auto 5% auto;
+	}
 }
 
 /***********************
