@@ -1,34 +1,46 @@
 <?php
-    
-    $configs = include('config.php');
-    define("apiKey", $configs['apiKey']);
 
     $region = $_POST['region'];
     define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region); 
 
     function getSummonerId($user) {
-        $userUrl = regionUrl . "/v1.4/summoner/by-name/" . $user 
-                . "?api_key=" . apiKey;
-        $urlHeader = get_headers($userUrl);
-        //BandAid solution for every http request error
-        if($urlHeader[0] != "HTTP/1.1 200 OK")
-            return 'N/A';
-        else 
-        {
-            $userJson = file_get_contents($userUrl);
-            $userData = json_decode($userJson, true);
 
-            // The following three lines are added to revert the
-            // summoner name back from html encoding in order for it to
-            // work with the damn api
-            $user = rawurldecode($user);
-            $user = preg_replace('/\s+/', '', $user);
-            $user = strtolower($user);
-
-            $userId = $userData[$user]['id'];
-
-            return $userId;
+        $conn = new PDO("mysql:host=" . hostName .";dbname=" . dbName, serverUser, serverPassword);
+        $userQuery = "SELECT userId FROM userIds WHERE username = '$user'";
+        $userSearch = $conn->query($userQuery);
+        if ($userSearch->rowCount() > 0){
+            echo "<script>console.log(0);</script>";
+            $userId = $userSearch->fetch()[0];
         }
+        else {
+            echo "<script>console.log(1);</script>";
+            $userTrimmed = rawurlencode($user);
+            $userUrl = regionUrl . "/v1.4/summoner/by-name/" . $userTrimmed 
+                    . "?api_key=" . apiKey;
+            $urlHeader = get_headers($userUrl);
+
+            //BandAid solution for every http request error
+            if($urlHeader[0] != "HTTP/1.1 200 OK"){
+                return 'N/A';
+            }
+            else {
+                $userJson = file_get_contents($userUrl);
+                $userData = json_decode($userJson, true);
+
+                // The following three lines are added to revert the
+                // summoner name back from html encoding in order for it to
+                // work with the damn api
+                $userTrimmed = preg_replace('/\s+/', '', $userTrimmed);
+                $userTrimmed = strtolower($userTrimmed);
+
+                $userId = $userData[$userTrimmed]['id'];
+                $insertUser = "INSERT INTO userIds VALUES ('$user', $userId)";
+                $conn->exec($insertUser);
+            }
+        }
+
+        $conn = null;
+        return $userId;
     }
 
     function getMatchList($userId) {    

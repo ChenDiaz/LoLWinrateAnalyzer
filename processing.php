@@ -7,26 +7,25 @@
      ini_set('display_errors', 'On');
      error_reporting(E_ALL | E_STRICT);
 
-
-
      include 'jsonHelper.php';
-     
-     //Gets data from index.php
-     $userUntrimmed = htmlspecialchars($_POST['user']);
-     $user = rawurlencode($userUntrimmed);
+     $config = include('config.php');
+     define("apiKey", $config['apiKey']);
+     define("serverUser", $config['serverUser']);
+     define("serverPassword", $config['serverPassword']);
+     define("hostName", $config['hostName']);
+     define("dbName", $config['dbName']);
 
-     $duoPartnerUntrimmed  = htmlspecialchars($_POST['duoPartner']);
-     $duoPartner = rawurlencode($duoPartnerUntrimmed);
+     $user = htmlspecialchars($_POST['user']);
+     $duoPartner = htmlspecialchars($_POST['duoPartner']);
 
      $userId = getSummonerId($user);
-
      $duoPartnerId = ($duoPartner != "") ? getSummonerId($duoPartner) : "";
 
      //Processing result
      if($userId != 'N/A' && $duoPartnerId != 'N/A')
      {
           // card title
-          echo "<br><div class='results-card card-margin'><h1 class='align-center'><b><span id='light-title'>Solo</span> " . $userUntrimmed . "</b></h1>";
+          echo "<br><div class='results-card card-margin'><h1 class='align-center'><b><span id='light-title'>Solo</span> " . $user . "</b></h1>";
 
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
@@ -45,10 +44,10 @@
                           . $soloLosses . "</span></h2>";
           echo "<h1>Solo winrate: <span id='" . $winRateColor . "'>" . $soloWinRate . "%</span></h1></div>";
 
-          echo "<div class='results-card card-margin'";
+          echo "<div class='results-card card-margin'>";
 
           if ($duoPartner != "")
-               echo "<h1 id='align-center'><span id='light-title'>Duo with</span><b> " . $duoPartnerUntrimmed . "</h1></b>";
+               echo "<h1 id='align-center'><span id='light-title'>Duo with</span><b> " . $duoPartner . "</h1></b>";
           else
                echo "<h1 class='align-center'><span id='light-title'>No duo partner specified</h1></b>";
 
