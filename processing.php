@@ -9,22 +9,24 @@
 
      include 'jsonHelper.php';
      $config = include('config.php');
+
+     $user = htmlspecialchars($_POST['user']);
+     $duoPartner = htmlspecialchars($_POST['duoPartner']);
+
      define("apiKey", $config['apiKey']);
      define("serverUser", $config['serverUser']);
      define("serverPassword", $config['serverPassword']);
      define("hostName", $config['hostName']);
      define("dbName", $config['dbName']);
 
-     $user = htmlspecialchars($_POST['user']);
-     $duoPartner = htmlspecialchars($_POST['duoPartner']);
+     $region = $_POST['region'];
+     define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region);
 
      $userId = getSummonerId($user);
      $duoPartnerId = ($duoPartner != "") ? getSummonerId($duoPartner) : "";
 
      //Processing result
-     if($userId != 'N/A' && $duoPartnerId != 'N/A')
-     {
-          // card title
+     if($userId != 'N/A' && $duoPartnerId != 'N/A' && authenticateRegion($region)) {
           echo "<br><div class='results-card card-margin'><h1 class='align-center'><b><span id='light-title'>Solo</span> " . $user . "</b></h1>";
 
           //Gets user's match list using jsonHelper
@@ -64,12 +66,11 @@
           echo "<h1>Duo winrate: <span id='" . $winRateColor . "'>" . $duoWinRate . "%</span></h1></div>";
           echo "</div>";
      }
-     else
-     {
+     else {
           $pictureFilePath = "css/img/ErrorAmumu.png";
           $img = '<img id="errorAmumu" src="' . $pictureFilePath . '">';
 
-          echo "<div class='container'><div class='starter-template'><div class='card'>";
+          echo "<div class='container'><div class='starter-template'><div class='start-card'>";
           echo "<h2 class='align-center'>Uh Oh</h2>";
           echo "<div>" . $img . "</div>";
           echo "<h3>There was an error in your submission. Try again.<h3>";

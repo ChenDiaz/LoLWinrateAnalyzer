@@ -1,7 +1,8 @@
 <?php
-
-    $region = $_POST['region'];
-    define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region); 
+    
+    function authenticateRegion($region) {
+        return ($region == 'na');
+    }
 
     function getSummonerId($user) {
 
