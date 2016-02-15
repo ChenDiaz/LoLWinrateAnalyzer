@@ -7,17 +7,19 @@
      ini_set('display_errors', 'On');
      error_reporting(E_ALL | E_STRICT);
 
+
+
      include 'jsonHelper.php';
-     $config = include('config.php');
+     //$config = include('config.php');
 
      $user = htmlspecialchars($_POST['user']);
      $duoPartner = htmlspecialchars($_POST['duoPartner']);
-
+     /*
      define("apiKey", $config['apiKey']);
      define("serverUser", $config['serverUser']);
      define("serverPassword", $config['serverPassword']);
      define("hostName", $config['hostName']);
-     define("dbName", $config['dbName']);
+     define("dbName", $config['dbName']);*/
 
      $region = $_POST['region'];
      define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region);
@@ -32,10 +34,10 @@
           //Gets user's match list using jsonHelper
           $userMatchList = getMatchList($userId);
 
-          $matchCount = 10;
+          $matchCount = 50;
           $arrayOfMatchData = individualMatchData($matchCount, $userMatchList, $userId, $duoPartnerId);
           $numberOfSoloGames = $arrayOfMatchData[$matchCount-1]["numberOfSoloGames"];
-          
+
           $soloWinLostArray = MatchesWon($arrayOfMatchData, $matchCount, true);
           $soloWins = $soloWinLostArray["gamesWon"];
           $soloLosses = $soloWinLostArray["gamesLost"];

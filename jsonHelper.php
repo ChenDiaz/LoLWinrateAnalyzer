@@ -1,23 +1,43 @@
 <?php
-    
+  session_start();
+?>
+
+<?php
+    include 'config.php';
+
+    $apiKey = $_SESSION["apiKey"];
+
     function authenticateRegion($region) {
         return ($region == 'na');
     }
 
     function getSummonerId($user) {
+        global $apiKey;
+        // 2/14 added "port=3306"
+        //$conn = new PDO("mysql:host=localhost" . hostName . ";port=3306;dbname=" . dbName, serverUser, serverPassword);
+        /*$userQuery = "SELECT userId FROM userIds WHERE username = '$user'";
+        $userSearch = $conn->query($userQuery);*/
+        $conn = new PDO("mysql:host=localhost;dbname=userIds","root","HV6FFuPZSl");
+        $stmt = $conn->prepare("SELECT userId FROM userIds Where username=?");
+        $stmt->bindValue(1, $user, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $conn = new PDO("mysql:host=" . hostName .";dbname=" . dbName, serverUser, serverPassword);
-        $userQuery = "SELECT userId FROM userIds WHERE username = '$user'";
-        $userSearch = $conn->query($userQuery);
+        // if userId is found
+        /*
         if ($userSearch->rowCount() > 0){
             echo "<script>console.log(0);</script>";
             $userId = $userSearch->fetch()[0];
+        }*/
+        if ($result[0]['userId'] != NULL) {
+          echo "<script>console.log(0);</script>";
+          $userId = $result[0]['userId'];
         }
         else {
             echo "<script>console.log(1);</script>";
             $userTrimmed = rawurlencode($user);
-            $userUrl = regionUrl . "/v1.4/summoner/by-name/" . $userTrimmed 
-                    . "?api_key=" . apiKey;
+            $userUrl = regionUrl . "/v1.4/summoner/by-name/" . $userTrimmed
+                    . "?api_key=" . $apiKey;
             $urlHeader = get_headers($userUrl);
 
             //BandAid solution for every http request error
@@ -44,9 +64,10 @@
         return $userId;
     }
 
-    function getMatchList($userId) {    
-        $userMatchIdUrl = regionUrl . "/v2.2/matchlist/by-summoner/" . $userId 
-                . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=10&api_key=" . apiKey;
+    function getMatchList($userId) {
+        global $apiKey;
+        $userMatchIdUrl = regionUrl . "/v2.2/matchlist/by-summoner/" . $userId
+                . "?rankedQueues=RANKED_SOLO_5x5&beginIndex=0&endIndex=50&api_key=" . $apiKey;
         $userMatchIdJSON = file_get_contents($userMatchIdUrl);
         $userMatchList = json_decode($userMatchIdJSON, true);
 
@@ -54,15 +75,16 @@
     }
 
     function individualMatchData($numberOfMatches, $userMatchList, $userId, $duoId) {
+        global $apiKey;
         $overallMatchDataArray = array();
-        $numberOfSoloGames = 10;
+        $numberOfSoloGames = 50;
         for ($i = 0; $i < $numberOfMatches; $i++) {
             // variables to be added to the associative array for each match
             $individualMatchArray = array();
             $playedSolo = true;
 
-            $userMatchURL = regionUrl . "/v2.2/match/" . $userMatchList["matches"][$i]["matchId"] 
-                    . "?api_key=" . apiKey;
+            $userMatchURL = regionUrl . "/v2.2/match/" . $userMatchList["matches"][$i]["matchId"]
+                    . "?api_key=" . $apiKey;
             $userMatchJSON = file_get_contents($userMatchURL);
             $userMatch = json_decode($userMatchJSON, true);
 
