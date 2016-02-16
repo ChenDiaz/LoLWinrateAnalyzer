@@ -10,16 +10,9 @@
 
 
      include 'jsonHelper.php';
-     //$config = include('config.php');
 
      $user = htmlspecialchars($_POST['user']);
      $duoPartner = htmlspecialchars($_POST['duoPartner']);
-     /*
-     define("apiKey", $config['apiKey']);
-     define("serverUser", $config['serverUser']);
-     define("serverPassword", $config['serverPassword']);
-     define("hostName", $config['hostName']);
-     define("dbName", $config['dbName']);*/
 
      $region = $_POST['region'];
      define("regionUrl", "https://" . $region . ".api.pvp.net/api/lol/" . $region);

@@ -13,23 +13,14 @@
 
     function getSummonerId($user) {
         global $apiKey;
-        // 2/14 added "port=3306"
-        //$conn = new PDO("mysql:host=localhost" . hostName . ";port=3306;dbname=" . dbName, serverUser, serverPassword);
-        /*$userQuery = "SELECT userId FROM userIds WHERE username = '$user'";
-        $userSearch = $conn->query($userQuery);*/
+
         $conn = new PDO("mysql:host=localhost;dbname=userIds","root","HV6FFuPZSl");
         $stmt = $conn->prepare("SELECT userId FROM userIds Where username=?");
         $stmt->bindValue(1, $user, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // if userId is found
-        /*
-        if ($userSearch->rowCount() > 0){
-            echo "<script>console.log(0);</script>";
-            $userId = $userSearch->fetch()[0];
-        }*/
-        if ($result[0]['userId'] != NULL) {
+        if (count($result) != 0) {
           echo "<script>console.log(0);</script>";
           $userId = $result[0]['userId'];
         }
@@ -41,7 +32,7 @@
             $urlHeader = get_headers($userUrl);
 
             //BandAid solution for every http request error
-            if($urlHeader[0] != "HTTP/1.1 200 OK"){
+            if($urlHeader[0] != "HTTP/1.1 200 OK") {
                 return 'N/A';
             }
             else {
@@ -51,8 +42,9 @@
                 // The following three lines are added to revert the
                 // summoner name back from html encoding in order for it to
                 // work with the damn api
-                $userTrimmed = preg_replace('/\s+/', '', $userTrimmed);
+                $userTrimmed = urldecode($userTrimmed);
                 $userTrimmed = strtolower($userTrimmed);
+                $userTrimmed = preg_replace('/\s+/', '', $userTrimmed); //takes out whitespaces
 
                 $userId = $userData[$userTrimmed]['id'];
                 $insertUser = "INSERT INTO userIds VALUES ('$user', $userId)";
